@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import styled from 'styled-components';
+import { Router, Link } from '@reach/router';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const Container = styled.div``;
+const NavContainer = styled.nav``;
+const App = ({ loading, user }) => (
+	<Container>
+		<Nav user={user} />
+		<Router>
+			<Home path="/" />
+			<Account path="/account" />
+		</Router>
+	</Container>
+);
+const Nav = ({ user }) => (
+	<NavContainer>
+		{user ? (
+			<Link to="/account">{user.name}</Link>
+		) : (
+			<a href="http://localhost:4000/auth/facebook">
+				<button>Login</button>
+			</a>
+		)}
+	</NavContainer>
+);
 
+const Home = () => <div>Home</div>;
+const Account = () => <div>Account</div>;
 export default App;
