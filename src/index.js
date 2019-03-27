@@ -20,6 +20,10 @@ const query = gql`
 		me {
 			name
 			photo
+			lists {
+				title
+				description
+			}
 		}
 	}
 `;
