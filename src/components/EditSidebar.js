@@ -47,7 +47,6 @@ const EditSidebar = ({ id, title, description, places }) => (
 								return place ? place.id : null;
 							})}
 						/>
-
 						<PlaceList places={places} updatePlaces={handleUpdate} />
 					</>
 				);

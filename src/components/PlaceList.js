@@ -11,7 +11,7 @@ const PlaceList = ({ places, updatePlaces }) => {
 	return (
 		<Container>
 			{places.map((p) => (
-				<PlaceItem key={p.id} place={p} deletePlace={handleDelete} />
+				<PlaceItem key={p.id} place={p} deletePlace={updatePlaces && handleDelete} />
 			))}
 		</Container>
 	);
@@ -24,7 +24,7 @@ const PlaceItem = ({ place, deletePlace }) => {
 		<div>
 			<div>{name}</div>
 			<div>{address}</div>
-			<button onClick={handleDelete}>Delete</button>
+			{deletePlace && <button onClick={handleDelete}>Delete</button>}
 		</div>
 	);
 };
