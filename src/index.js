@@ -21,6 +21,7 @@ const query = gql`
 			name
 			photo
 			lists {
+				id
 				title
 				description
 			}
