@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import PlaceList from './PlaceList';
+import FavoriteButton from './FavoriteButton';
 
 const Container = styled.div``;
 
-// Move mutation logic to PlacesForm component?
-const Sidebar = ({ id, title, description, places }) => (
+const Sidebar = ({ id, user, title, description, places }) => (
 	<Container>
+		<FavoriteButton id={id} user={user} />
 		<h3>{title}</h3>
 		<p>{description}</p>
 		<PlaceList places={places} />

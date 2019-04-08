@@ -25,10 +25,11 @@ const query = gql`
 	}
 `;
 
-const List = ({ id, isOwner }) => (
+const List = ({ id, user, isOwner }) => (
 	<Query query={query} variables={{ id }}>
 		{({ loading, error, data }) => {
 			if (loading) return <div>Loading...</div>;
+			console.log(user);
 			return (
 				<Container>
 					{isOwner ? (
@@ -40,6 +41,7 @@ const List = ({ id, isOwner }) => (
 						/>
 					) : (
 						<Sidebar
+							user={user}
 							id={id}
 							title={data.list.title}
 							description={data.list.description}

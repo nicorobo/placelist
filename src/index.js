@@ -18,9 +18,15 @@ const client = new ApolloClient({
 const query = gql`
 	{
 		me {
+			id
 			name
 			photo
 			lists {
+				id
+				title
+				description
+			}
+			favorites {
 				id
 				title
 				description
@@ -32,9 +38,7 @@ const query = gql`
 ReactDOM.render(
 	<ApolloProvider client={client}>
 		<Query query={query}>
-			{({ loading, error, data }) => (
-				<App loading={loading} user={data && data.me} />
-			)}
+			{({ loading, error, data }) => <App loading={loading} user={data && data.me} />}
 		</Query>
 	</ApolloProvider>,
 	document.getElementById('root')
