@@ -3,15 +3,14 @@ import styled from 'styled-components';
 
 const Container = styled.div``;
 
-const PlaceList = ({ places, updatePlaces }) => {
+const PlaceList = ({ places, update }) => {
 	const handleDelete = (id) => {
-		console.log('deleting place: ', id);
-		updatePlaces(places.map((p) => p.id).filter((i) => i !== id));
+		update({ places: places.map((p) => p.id).filter((i) => i !== id) });
 	};
 	return (
 		<Container>
 			{places.map((p) => (
-				<PlaceItem key={p.id} place={p} deletePlace={updatePlaces && handleDelete} />
+				<PlaceItem key={p.id} place={p} deletePlace={update && handleDelete} />
 			))}
 		</Container>
 	);

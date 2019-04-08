@@ -15,14 +15,14 @@ const query = gql`
 	}
 `;
 
-const PlacesForm = ({ places, updatePlaces }) => {
+const PlacesForm = ({ places, update }) => {
 	const [input, setInput] = useState('');
 	const handleInputChange = (e, { newValue }) => {
 		setInput(e.target.value || newValue);
 	};
 	const onSuggestionSelected = (e, { suggestion }) => {
 		setInput('');
-		updatePlaces([...places, suggestion.id]);
+		update({ places: [...places, suggestion.id] });
 	};
 	return (
 		<Container>

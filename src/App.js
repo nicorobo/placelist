@@ -7,7 +7,9 @@ import Account from './components/Account';
 import Create from './components/Create';
 import List from './components/List';
 
-const Container = styled.div``;
+const Container = styled.div`
+	font-family: monospace;
+`;
 
 const App = ({ loading, user }) => (
 	<Container>
