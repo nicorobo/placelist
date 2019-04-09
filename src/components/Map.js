@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import GoogleMap from 'google-map-react';
 
 const Map = ({ places }) => (
-	<div style={{ height: '100vh', width: '100%' }}>
+	<div style={{ height: '100%', width: '100%' }}>
 		<GoogleMap
 			bootstrapURLKeys={{ key: 'AIzaSyCWXiqy631Eh5-S-00m8YCAVS9GenIgdUU' }}
 			defaultZoom={11}

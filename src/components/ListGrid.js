@@ -21,7 +21,7 @@ const ListGrid = ({ near }) => (
 			return (
 				<Container>
 					{data.lists.map((l) => (
-						<List list={l} />
+						<ListItem list={l} />
 					))}
 				</Container>
 			);
@@ -29,18 +29,30 @@ const ListGrid = ({ near }) => (
 	</Query>
 );
 
-const List = ({ list }) => {
+const ListItem = ({ list }) => {
 	return (
-		<div style={{ margin: '1rem' }}>
-			<Link to={`/${list.id}`}>{list.title}</Link>
-			<p>{list.description}</p>
-		</div>
+		<Item>
+			<ItemTitle to={`/${list.id}`}>{list.title}</ItemTitle>
+			<ItemDescription>{list.description}</ItemDescription>
+		</Item>
 	);
 };
+const Item = styled.div``;
+const ItemTitle = styled(Link)`
+	text-decoration: none;
+	color: #226089;
+	font-size: 1.2rem;
+	font-weight: 600;
+`;
+const ItemDescription = styled.p`
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+`;
 
 const Container = styled.div`
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 1rem;
 `;
 
 export default ListGrid;

@@ -19,8 +19,7 @@ const updateUserMutation = gql`
 const FavoriteButton = ({ id, user }) => (
 	<Mutation mutation={updateUserMutation}>
 		{(updateUser) => {
-			if (!user) return false;
-			const favoriteIds = user.favorites.map((f) => f.id);
+			const favoriteIds = user.favorites.filter((f) => f !== null).map((f) => f.id);
 			const isFavorite = favoriteIds.includes(id);
 			const handleClick = () => {
 				// If list is already favorited, remove. Otherwise, add

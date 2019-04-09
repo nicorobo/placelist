@@ -12,6 +12,9 @@ const query = gql`
 			id
 			title
 			description
+			createdBy {
+				id
+			}
 			places {
 				id
 				name
@@ -29,7 +32,6 @@ const List = ({ id, user, isOwner }) => (
 	<Query query={query} variables={{ id }}>
 		{({ loading, error, data }) => {
 			if (loading) return <div>Loading...</div>;
-			console.log(user);
 			return (
 				<Container>
 					{isOwner ? (
@@ -44,6 +46,7 @@ const List = ({ id, user, isOwner }) => (
 							user={user}
 							id={id}
 							title={data.list.title}
+							createdBy={data.list.createdBy.id}
 							description={data.list.description}
 							places={data.list.places}
 						/>
@@ -65,6 +68,7 @@ const List = ({ id, user, isOwner }) => (
 
 const Container = styled.div`
 	display: flex;
+	flex-grow: 1;
 `;
 const MapContainer = styled.div`
 	flex-grow: 1;
