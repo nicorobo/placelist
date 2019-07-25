@@ -5,8 +5,6 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import ListForm from './ListForm';
 
-const Container = styled.div``;
-
 const createListMutation = gql`
 	mutation CreateList($input: ListInput) {
 		createList(input: $input) {
@@ -21,6 +19,7 @@ const createListMutation = gql`
 
 const Create = () => (
 	<Container>
+		<PageTitle>Create List</PageTitle>
 		<Mutation mutation={createListMutation}>
 			{(createList, { data }) => {
 				if (data) navigate(`/edit/${data.createList.id}`);
@@ -29,5 +28,21 @@ const Create = () => (
 		</Mutation>
 	</Container>
 );
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 800px;
+	padding: 1rem 2rem;
+`;
+
+const PageTitle = styled.h2`
+	font-size: 2rem;
+	font-weight: bold;
+	color: #333;
+	text-align: center;
+`;
 
 export default Create;
