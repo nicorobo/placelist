@@ -16,6 +16,7 @@ const Container = styled.div`
 
 const StyledRouter = styled(Router)`
 	display: flex;
+	justify-content: center;
 	flex-grow: 1;
 `;
 

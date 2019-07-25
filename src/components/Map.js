@@ -19,8 +19,9 @@ const Map = ({ places }) => (
 );
 
 const PlaceMarker = styled.div`
-	height: 20px;
-	width: 20px;
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
 	background: red;
 `;
 
