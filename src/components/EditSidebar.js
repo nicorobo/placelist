@@ -5,27 +5,6 @@ import gql from 'graphql-tag';
 import PlacesForm from './PlacesForm';
 import PlaceList from './PlaceList';
 
-const Container = styled.div``;
-
-const updateListMutation = gql`
-	mutation UpdateList($id: ID!, $input: ListInput) {
-		updateList(id: $id, input: $input) {
-			id
-			title
-			description
-			places {
-				id
-				name
-				address
-				location {
-					lat
-					lng
-				}
-			}
-		}
-	}
-`;
-
 // Move mutation logic to PlacesForm component?
 const EditSidebar = ({ id, title, description, places }) => (
 	<Mutation mutation={updateListMutation}>
@@ -67,18 +46,40 @@ const EditableTitle = ({ value, update }) => {
 	const handleInput = (e) => setContent(e.target.value);
 	if (editing)
 		return (
-			<form onSubmit={handleUpdate}>
-				<input value={content} onChange={handleInput} />
-				<input type="submit" value="Submit" />
-			</form>
+			<TitleForm onSubmit={handleUpdate}>
+				<TitleInput value={content} onChange={handleInput} />
+				<SubmitButton />
+			</TitleForm>
 		);
 	return (
-		<div>
-			<h3>{content}</h3>
-			<button onClick={handleToggleEdit}>Edit</button>
-		</div>
+		<TitleSection>
+			<Title>{content}</Title>
+			<EditButton onClick={handleToggleEdit} />
+		</TitleSection>
 	);
 };
+
+const TitleSection = styled.div`
+	display: flex;
+	margin-bottom: 0.8rem;
+	align-items: center;
+`;
+const TitleForm = styled.form`
+	display: flex;
+	margin-bottom: 0.8rem;
+	align-items: center;
+`;
+const Title = styled.h3`
+	font-size: 1.5rem;
+	flex-grow: 1;
+	// font-weight: bold;
+	color: #333;
+`;
+const TitleInput = styled.input`
+	font-size: 1rem;
+	flex-grow: 1;
+`;
+
 const EditableDescription = ({ value, update }) => {
 	const [editing, setEditing] = useState(false);
 	const [content, setContent] = useState(value);
@@ -91,17 +92,86 @@ const EditableDescription = ({ value, update }) => {
 	const handleInput = (e) => setContent(e.target.value);
 	if (editing)
 		return (
-			<form onSubmit={handleUpdate}>
-				<textarea onChange={handleInput}>{content}</textarea>
-				<input type="submit" value="Submit" />
-			</form>
+			<DescriptionForm onSubmit={handleUpdate}>
+				<DescriptionInput onChange={handleInput}>{content}</DescriptionInput>
+				<SubmitButton />
+			</DescriptionForm>
 		);
 	return (
-		<div>
-			<p>{content}</p>
-			<button onClick={handleToggleEdit}>Edit</button>
-		</div>
+		<DescriptionSection>
+			<Description>{content}</Description>
+			<EditButton onClick={handleToggleEdit} />
+		</DescriptionSection>
 	);
 };
+
+const SubmitButton = () => (
+	<StyledButton type="submit">
+		<i class="fas fa-check" />
+	</StyledButton>
+);
+const EditButton = ({ onClick }) => (
+	<StyledButton onClick={onClick}>
+		<i class="fas fa-edit" />
+	</StyledButton>
+);
+
+const DescriptionSection = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.8rem;
+`;
+const DescriptionForm = styled.form`
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.8rem;
+`;
+const Description = styled.p`
+	font-size: 0.9rem;
+	flex-grow: 1;
+	color: #333;
+`;
+const DescriptionInput = styled.textarea`
+	font-size: 0.9rem;
+	height: 50px;
+	flex-grow: 1;
+`;
+
+const StyledButton = styled.button`
+	border: none;
+	outline: none;
+	font-size: 0.9rem;
+	background: white;
+	cursor: pointer;
+	color: #bbb;
+	&:hover {
+		color: #333;
+	}
+	align-self: flex-end;
+`;
+
+const Container = styled.div`
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	width: 300px;
+`;
+
+const updateListMutation = gql`
+	mutation UpdateList($id: ID!, $input: ListInput) {
+		updateList(id: $id, input: $input) {
+			id
+			title
+			description
+			places {
+				id
+				name
+				address
+				location {
+					lat
+					lng
+				}
+			}
+		}
+	}
+`;
 
 export default EditSidebar;
