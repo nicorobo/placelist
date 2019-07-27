@@ -72,7 +72,6 @@ const TitleForm = styled.form`
 const Title = styled.h3`
 	font-size: 1.5rem;
 	flex-grow: 1;
-	// font-weight: bold;
 	color: #333;
 `;
 const TitleInput = styled.input`
