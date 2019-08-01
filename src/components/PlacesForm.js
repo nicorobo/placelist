@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const Container = styled.div``;
-
 const query = gql`
 	query PlaceSuggestions($input: String!) {
 		placeSuggestions(input: $input) {
@@ -32,15 +30,18 @@ const PlacesForm = ({ places, update }) => {
 					return (
 						<Autosuggest
 							suggestions={suggestions || []}
-							renderSuggestion={(suggestion) => <div>{suggestion.description}</div>}
+							renderSuggestion={(suggestion, { query, isHighlighted }) => (
+								<Suggestion suggestion={suggestion} isHighlighted={isHighlighted} />
+							)}
 							getSuggestionValue={(suggestion) => suggestion.description}
 							onSuggestionsFetchRequested={() => null}
 							onSuggestionSelected={onSuggestionSelected}
-							alwaysRenderSuggestions={true}
+							highlightFirstSuggestion={true}
 							inputProps={{
 								value: input,
 								onChange: handleInputChange,
 								placeholder: 'Enter a place name',
+								className: 'bo',
 							}}
 						/>
 					);
@@ -49,5 +50,40 @@ const PlacesForm = ({ places, update }) => {
 		</Container>
 	);
 };
+
+const Suggestion = ({ suggestion, isHighlighted }) => {
+	const split = suggestion.description.split(',');
+	const primary = split[0];
+	const secondary = split.slice(1).join(', ');
+	return (
+		<StyledSuggestion isHighlighted={isHighlighted}>
+			<PrimaryLine>{primary}</PrimaryLine>
+			<SecondaryLine>{secondary}</SecondaryLine>
+		</StyledSuggestion>
+	);
+};
+const StyledSuggestion = styled.div`
+	padding: 0.5rem 0.5rem;
+	font-size: 0.9rem;
+	cursor: pointer;
+	${(props) => (props.isHighlighted ? `background: #226089; color: white;` : '')};
+`;
+const PrimaryLine = styled.div``;
+const SecondaryLine = styled.div`
+	font-weight: lighter;
+	font-size: 0.8rem;
+`;
+const Container = styled.div`
+	margin-bottom: 1rem;
+	.bo {
+		width: 85%;
+		padding: 0.5rem 0.5rem;
+	}
+	.react-autosuggest__suggestions-container {
+		position: absolute;
+		background: rgba(255, 255, 255, 0.9);
+		border: 1px solid #ccc;
+	}
+`;
 
 export default PlacesForm;
