@@ -32,7 +32,7 @@ const Map = ({ places, activePlace, setActivePlace, position, setPosition }) => 
 	useEffect(() => {
 		if (cont) {
 			const bounds = getBounds(places, cont);
-			bounds.zoom += 1;
+			bounds.zoom -= 1;
 			setPosition(bounds);
 		}
 	}, [places.length]);
