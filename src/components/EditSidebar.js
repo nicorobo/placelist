@@ -111,12 +111,12 @@ const EditableDescription = ({ value, update }) => {
 
 const SubmitButton = () => (
 	<StyledButton type="submit">
-		<i class="fas fa-check" />
+		<i className="fas fa-check" />
 	</StyledButton>
 );
 const EditButton = ({ onClick }) => (
 	<StyledButton onClick={onClick}>
-		<i class="fas fa-edit" />
+		<i className="fas fa-edit" />
 	</StyledButton>
 );
 

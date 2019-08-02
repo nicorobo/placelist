@@ -37,10 +37,12 @@ const Container = styled.form`
 	margin-top: 1rem;
 `;
 const TitleInput = styled.input`
+	padding: 0.5rem 0.5rem;
 	margin-bottom: 1rem;
 	height: 1rem;
 `;
 const DescriptionInput = styled.input`
+	padding: 0.5rem 0.5rem;
 	margin-bottom: 1rem;
 	height: 1rem;
 `;

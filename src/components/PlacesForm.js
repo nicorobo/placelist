@@ -26,7 +26,7 @@ const PlacesForm = ({ places, update }) => {
 		<Container>
 			<Query query={query} variables={{ input }} skip={input.length < 3}>
 				{({ loading, error, data }) => {
-					const suggestions = data && data.placeSuggestions;
+					let suggestions = data && data.placeSuggestions;
 					return (
 						<Autosuggest
 							suggestions={suggestions || []}
@@ -35,6 +35,7 @@ const PlacesForm = ({ places, update }) => {
 							)}
 							getSuggestionValue={(suggestion) => suggestion.description}
 							onSuggestionsFetchRequested={() => null}
+							onSuggestionsClearRequested={() => (suggestions = null)}
 							onSuggestionSelected={onSuggestionSelected}
 							highlightFirstSuggestion={true}
 							inputProps={{

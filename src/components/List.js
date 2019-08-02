@@ -30,6 +30,7 @@ const query = gql`
 
 const List = ({ id, user, isOwner }) => {
 	const [activePlace, setActivePlace] = useState(null);
+	const [position, setPosition] = useState({ zoom: null, center: null });
 	return (
 		<Query query={query} variables={{ id }}>
 			{({ loading, error, data }) => {
@@ -66,6 +67,8 @@ const List = ({ id, user, isOwner }) => {
 								mapElement={<div style={{ height: `100%` }} />}
 								activePlace={activePlace}
 								setActivePlace={setActivePlace}
+								position={position}
+								setPosition={setPosition}
 							/>
 						</MapContainer>
 					</Container>

@@ -33,7 +33,7 @@ const PlaceItem = ({ place, isActivePlace, setActivePlace, deletePlace }) => {
 			</MainSection>
 			{deletePlace && (
 				<DeleteButton onClick={handleDelete}>
-					<i class="fas fa-trash" />
+					<i className="fas fa-trash" />
 				</DeleteButton>
 			)}
 		</Item>
