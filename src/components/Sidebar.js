@@ -3,12 +3,21 @@ import styled from 'styled-components';
 import PlaceList from './PlaceList';
 import FavoriteButton from './FavoriteButton';
 
-const Sidebar = ({ id, user, title, description, places, createdBy }) => (
+const Sidebar = ({
+	id,
+	user,
+	title,
+	description,
+	places,
+	createdBy,
+	activePlace,
+	setActivePlace,
+}) => (
 	<Container>
 		{user && user.id !== createdBy && <FavoriteButton id={id} user={user} />}
 		<Title>{title}</Title>
 		<Description>{description}</Description>
-		<PlaceList places={places} />
+		<PlaceList places={places} activePlace={activePlace} setActivePlace={setActivePlace} />
 	</Container>
 );
 const Title = styled.h3`

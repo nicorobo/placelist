@@ -6,7 +6,7 @@ import PlacesForm from './PlacesForm';
 import PlaceList from './PlaceList';
 
 // Move mutation logic to PlacesForm component?
-const EditSidebar = ({ id, title, description, places }) => (
+const EditSidebar = ({ id, title, description, places, activePlace, setActivePlace }) => (
 	<Mutation mutation={updateListMutation}>
 		{(updateList) => {
 			const handleUpdate = (input) => {
@@ -27,7 +27,12 @@ const EditSidebar = ({ id, title, description, places }) => (
 							return place ? place.id : null;
 						})}
 					/>
-					<PlaceList places={places} update={handleUpdate} />
+					<PlaceList
+						places={places}
+						update={handleUpdate}
+						activePlace={activePlace}
+						setActivePlace={setActivePlace}
+					/>
 				</Container>
 			);
 		}}

@@ -41,7 +41,7 @@ const PlacesForm = ({ places, update }) => {
 								value: input,
 								onChange: handleInputChange,
 								placeholder: 'Enter a place name',
-								className: 'bo',
+								className: 'places-form',
 							}}
 						/>
 					);
@@ -75,7 +75,7 @@ const SecondaryLine = styled.div`
 `;
 const Container = styled.div`
 	margin-bottom: 1rem;
-	.bo {
+	.places-form {
 		width: 85%;
 		padding: 0.5rem 0.5rem;
 	}

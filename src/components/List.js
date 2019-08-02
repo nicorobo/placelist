@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -28,43 +28,52 @@ const query = gql`
 	}
 `;
 
-const List = ({ id, user, isOwner }) => (
-	<Query query={query} variables={{ id }}>
-		{({ loading, error, data }) => {
-			if (loading) return <div>Loading...</div>;
-			return (
-				<Container>
-					{isOwner ? (
-						<EditSidebar
-							id={id}
-							title={data.list.title}
-							description={data.list.description}
-							places={data.list.places}
-						/>
-					) : (
-						<Sidebar
-							user={user}
-							id={id}
-							title={data.list.title}
-							createdBy={data.list.createdBy.id}
-							description={data.list.description}
-							places={data.list.places}
-						/>
-					)}
-					<MapContainer>
-						<Map
-							places={data.list.places}
-							googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWXiqy631Eh5-S-00m8YCAVS9GenIgdUU&v=3.exp&libraries=geometry,drawing,places"
-							loadingElement={<div style={{ height: `100%` }} />}
-							containerElement={<div style={{ height: `400px` }} />}
-							mapElement={<div style={{ height: `100%` }} />}
-						/>
-					</MapContainer>
-				</Container>
-			);
-		}}
-	</Query>
-);
+const List = ({ id, user, isOwner }) => {
+	const [activePlace, setActivePlace] = useState(null);
+	return (
+		<Query query={query} variables={{ id }}>
+			{({ loading, error, data }) => {
+				if (loading) return <div>Loading...</div>;
+				return (
+					<Container>
+						{isOwner ? (
+							<EditSidebar
+								id={id}
+								title={data.list.title}
+								description={data.list.description}
+								places={data.list.places}
+								activePlace={activePlace}
+								setActivePlace={setActivePlace}
+							/>
+						) : (
+							<Sidebar
+								user={user}
+								id={id}
+								title={data.list.title}
+								createdBy={data.list.createdBy.id}
+								description={data.list.description}
+								places={data.list.places}
+								activePlace={activePlace}
+								setActivePlace={setActivePlace}
+							/>
+						)}
+						<MapContainer>
+							<Map
+								places={data.list.places}
+								googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWXiqy631Eh5-S-00m8YCAVS9GenIgdUU&v=3.exp&libraries=geometry,drawing,places"
+								loadingElement={<div style={{ height: `100%` }} />}
+								containerElement={<div style={{ height: `400px` }} />}
+								mapElement={<div style={{ height: `100%` }} />}
+								activePlace={activePlace}
+								setActivePlace={setActivePlace}
+							/>
+						</MapContainer>
+					</Container>
+				);
+			}}
+		</Query>
+	);
+};
 
 const Container = styled.div`
 	display: flex;
