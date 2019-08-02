@@ -36,15 +36,13 @@ const PlaceItem = ({
 	const onMouseLeave = () => setActivePlace(null);
 	const onClick = () =>
 		setPosition({
-			zoom: 15,
+			zoom: 17,
 			center: { lat: location.lat, lng: location.lng },
 		});
 	return (
 		<Item>
-			<MainSection onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-				<ItemName onClick={onClick} isActivePlace={isActivePlace}>
-					{name}
-				</ItemName>
+			<MainSection onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+				<ItemName isActivePlace={isActivePlace}>{name}</ItemName>
 				<ItemAddress>{address}</ItemAddress>
 			</MainSection>
 			{deletePlace && (

@@ -19,18 +19,18 @@ const Login = () => (
 );
 
 const Badge = ({ user }) => (
-	<UserBadge>
-		<AccountLink to="/account">{user.name}</AccountLink>
+	<AccountLink to="/account">
+		<Name>{user.name}</Name>
 		<Avatar>
-			<img src={user.photo} />
+			<img src={user.photo} alt="User Avatar" />
 		</Avatar>
-	</UserBadge>
+	</AccountLink>
 );
 
 const Container = styled.div`
 	display: flex;
 	align-items: center;
-	padding: 1rem 1rem 0.5rem 1rem;
+	padding: 1rem 2rem 0.5rem 2rem;
 `;
 const Logo = styled(Link)`
 	font-size: 1.5rem;
@@ -58,13 +58,13 @@ const LoginButton = styled.button`
 	}
 `;
 
-const UserBadge = styled.div`
+const AccountLink = styled(Link)`
 	display: flex;
 	align-items: center;
+	text-decoration: none;
 `;
 
-const AccountLink = styled(Link)`
-	text-decoration: none;
+const Name = styled.div`
 	margin-right: 1rem;
 	color: #333;
 	font-size: 0.9rem;

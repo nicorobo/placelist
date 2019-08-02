@@ -108,7 +108,7 @@ const EditableDescription = ({ value, update }) => {
 	if (editing)
 		return (
 			<DescriptionForm onSubmit={handleUpdate}>
-				<DescriptionInput onChange={handleInput}>{content}</DescriptionInput>
+				<DescriptionInput onChange={handleInput} value={content} />
 				<SubmitButton />
 			</DescriptionForm>
 		);

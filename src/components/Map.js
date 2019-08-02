@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import GoogleMap from 'google-map-react';
 import { multiPoint } from '@turf/helpers';
 import bbox from '@turf/bbox';
 import { fitBounds } from 'google-map-react/utils';
-import { getMarkupFromTree } from 'react-apollo';
-
+const defaultPosition = { center: [39.8097343, -98.5556199], zoom: 3 };
 const getBounds = (places, container) => {
-	if (places.length <= 0) return { center: [0, 0], zoom: 11 };
+	if (places.length <= 0) return defaultPosition;
 	if (places.length === 1)
-		return { center: [places[0].location.lat, places[0].location.lng], zoom: 11 };
+		return { center: [places[0].location.lat, places[0].location.lng], zoom: 13 };
 	const mp = multiPoint(places.map((p) => [p.location.lat, p.location.lng]));
 	const box = bbox(mp);
 	const bounds = {
@@ -30,6 +29,13 @@ const getBounds = (places, container) => {
 };
 const Map = ({ places, activePlace, setActivePlace, position, setPosition }) => {
 	const [cont, setCont] = useState(null);
+	useEffect(() => {
+		if (cont) {
+			const bounds = getBounds(places, cont);
+			bounds.zoom += 1;
+			setPosition(bounds);
+		}
+	}, [places.length]);
 	return (
 		<div ref={setCont} id="map-container" style={{ height: '100%', width: '100%' }}>
 			{!cont ? (
@@ -46,7 +52,7 @@ const Map = ({ places, activePlace, setActivePlace, position, setPosition }) => 
 						const onMouseLeave = () => setActivePlace(null);
 						const onClick = () => {
 							setPosition({
-								zoom: 15,
+								zoom: 17,
 								center: { lat: p.location.lat, lng: p.location.lng },
 							});
 						};

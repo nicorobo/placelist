@@ -10,6 +10,13 @@ const query = gql`
 			id
 			title
 			description
+			places {
+				id
+			}
+			createdBy {
+				id
+				name
+			}
 		}
 	}
 `;
@@ -21,7 +28,7 @@ const ListGrid = ({ near }) => (
 			return (
 				<Container>
 					{data.lists.map((l) => (
-						<ListItem list={l} />
+						<ListItem key={l.id} list={l} />
 					))}
 				</Container>
 			);
@@ -34,25 +41,57 @@ const ListItem = ({ list }) => {
 		<Item>
 			<ItemTitle to={`/${list.id}`}>{list.title}</ItemTitle>
 			<ItemDescription>{list.description}</ItemDescription>
+			<ItemCreator>
+				Created by <span>{list.createdBy.name}</span>
+			</ItemCreator>
+			<ItemCount>{list.places.length} Places</ItemCount>
 		</Item>
 	);
 };
-const Item = styled.div``;
+const Item = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding: 2rem;
+	border: 1px solid #e4e4e4;
+	box-shadow: 3px 3px 5px 0px #e4e4e4;
+`;
 const ItemTitle = styled(Link)`
 	text-decoration: none;
 	color: #226089;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	font-weight: 600;
 `;
 const ItemDescription = styled.p`
 	margin-top: 0.5rem;
 	font-size: 0.9rem;
+	flex-grow: 1;
+`;
+const ItemCount = styled.p`
+	align-self: flex-end;
+	margin-top: 0.2rem;
+	font-size: 0.8rem;
+	color: #226089;
+	opacity: 0.8;
+`;
+const ItemCreator = styled.p`
+	align-self: flex-end;
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	span {
+		color: #226089;
+	}
 `;
 
 const Container = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 1rem;
+	@media (max-width: 800px) {
+		grid-template-columns: 1fr 1fr;
+	}
+	@media (max-width: 500px) {
+		grid-template-columns: 1fr;
+	}
 `;
 
 export default ListGrid;

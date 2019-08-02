@@ -3,31 +3,38 @@ import { Link } from '@reach/router';
 import styled from 'styled-components';
 import { darken, lighten } from 'polished';
 
-const Account = ({ user }) => (
-	<Container>
-		<PageTitle>Account</PageTitle>
-		<Section>
-			<SectionTitle>
-				Your Lists <CreateLink to="/create">Create List</CreateLink>
-			</SectionTitle>
-			<Lists>
-				{user &&
-					user.lists.map((list) => (
-						<ListLink key={list.id} to={`/edit/${list.id}`}>
-							{list.title}
-						</ListLink>
-					))}
-			</Lists>
-		</Section>
-		<Section>
-			<SectionTitle>Your Favorites</SectionTitle>
-		</Section>
+const Account = ({ user }) => {
+	if (!user) return <div>Please log in to view account page.</div>;
+	return (
+		<Container>
+			<PageTitle>Account</PageTitle>
+			<Section>
+				<SectionTitle>
+					Your Lists <CreateLink to="/create">Create List</CreateLink>
+				</SectionTitle>
+				<Lists>
+					{user.lists.length > 0 ? (
+						user.lists.map((list) => (
+							<ListLink key={list.id} to={`/edit/${list.id}`}>
+								{list.title}
+							</ListLink>
+						))
+					) : (
+						<EmptyText>You haven't made any lists yet!</EmptyText>
+					)}
+				</Lists>
+			</Section>
+			<Section>
+				<SectionTitle>Your Favorites</SectionTitle>
+				<EmptyText>You haven't favorited any lists yet!</EmptyText>
+			</Section>
 
-		<a href="http://localhost:4000/auth/logout">
-			<button>Logout</button>
-		</a>
-	</Container>
-);
+			<a href="http://localhost:4000/auth/logout">
+				<button>Logout</button>
+			</a>
+		</Container>
+	);
+};
 
 const Container = styled.div`
 	display: flex;
@@ -74,6 +81,11 @@ const Lists = styled.div`
 	flex-direction: column;
 	margin-left: 1rem;
 `;
-const SectionBody = styled.div``;
+const EmptyText = styled.div`
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 1rem;
+	color: #888;
+`;
 
 export default Account;

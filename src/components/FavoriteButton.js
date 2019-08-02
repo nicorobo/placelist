@@ -14,8 +14,6 @@ const updateUserMutation = gql`
 	}
 `;
 
-// const Container = styled.div``;
-
 const FavoriteButton = ({ id, user }) => (
 	<Mutation mutation={updateUserMutation}>
 		{(updateUser) => {
@@ -30,9 +28,11 @@ const FavoriteButton = ({ id, user }) => (
 					variables: { id: user.id, input: { favorites } },
 				});
 			};
-			return <button onClick={handleClick}>{isFavorite ? 'unfavorite' : 'favorite'}</button>;
+			return <Button onClick={handleClick}>{isFavorite ? 'unfavorite' : 'favorite'}</Button>;
 		}}
 	</Mutation>
 );
+
+const Button = styled.button``;
 
 export default FavoriteButton;
