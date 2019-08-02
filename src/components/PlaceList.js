@@ -52,7 +52,7 @@ const ItemName = styled.div`
 	margin-bottom: 0.2rem;
 	font-size: 0.9rem;
 	font-weight: bold;
-	color: ${(props) => (props.isActivePlace ? '#f88' : '#333')};
+	color: ${(props) => (props.isActivePlace ? '#226089' : '#333')};
 `;
 const ItemAddress = styled.div`
 	font-size: 0.8rem;

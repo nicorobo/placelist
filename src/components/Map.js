@@ -22,8 +22,9 @@ const Map = ({ places, activePlace, setActivePlace }) => (
 						onMouseLeave={onMouseLeave}
 						lat={p.location.lat}
 						lng={p.location.lng}
-						place={p}
-					/>
+						place={p}>
+						<i className="fas fa-map-marker-alt" />
+					</PlaceMarker>
 				);
 			})}
 		</GoogleMap>
@@ -31,11 +32,12 @@ const Map = ({ places, activePlace, setActivePlace }) => (
 );
 
 const PlaceMarker = styled.div`
-	height: 10px;
-	width: 10px;
-	border-radius: 50%;
+	font-size: ${(props) => (props.isActive ? '2rem' : '1.5rem')};
+	position: absolute;
+	top: ${(props) => (props.isActive ? '-2rem' : '-1.5rem')};
+	left: ${(props) => (props.isActive ? '-0.7rem' : '-0.5rem')};
+	transition: 0.2s ease all;
 	cursor: default;
-	background: ${(props) => (props.isActive ? 'blue' : 'red')};
 `;
 
 export default Map;
