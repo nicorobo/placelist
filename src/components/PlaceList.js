@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PlaceList = ({ places, update, activePlace, setActivePlace }) => {
+const PlaceList = ({ places, update, activePlace, setActivePlace, position, setPosition }) => {
 	const handleDelete = (id) => {
 		update({ places: places.map((p) => p.id).filter((i) => i !== id) });
 	};
@@ -13,6 +13,8 @@ const PlaceList = ({ places, update, activePlace, setActivePlace }) => {
 					place={p}
 					isActivePlace={activePlace && activePlace.id === p.id}
 					setActivePlace={setActivePlace}
+					position={position}
+					setPosition={setPosition}
 					deletePlace={update && handleDelete}
 				/>
 			))}
@@ -20,15 +22,29 @@ const PlaceList = ({ places, update, activePlace, setActivePlace }) => {
 	);
 };
 
-const PlaceItem = ({ place, isActivePlace, setActivePlace, deletePlace }) => {
-	const { id, name, address } = place;
+const PlaceItem = ({
+	place,
+	isActivePlace,
+	setActivePlace,
+	deletePlace,
+	position,
+	setPosition,
+}) => {
+	const { id, name, address, location } = place;
 	const handleDelete = () => deletePlace(id);
 	const onMouseEnter = () => setActivePlace(place);
 	const onMouseLeave = () => setActivePlace(null);
+	const onClick = () =>
+		setPosition({
+			zoom: 15,
+			center: { lat: location.lat, lng: location.lng },
+		});
 	return (
 		<Item>
 			<MainSection onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-				<ItemName isActivePlace={isActivePlace}>{name}</ItemName>
+				<ItemName onClick={onClick} isActivePlace={isActivePlace}>
+					{name}
+				</ItemName>
 				<ItemAddress>{address}</ItemAddress>
 			</MainSection>
 			{deletePlace && (
@@ -43,7 +59,7 @@ const PlaceItem = ({ place, isActivePlace, setActivePlace, deletePlace }) => {
 const Item = styled.div`
 	display: flex;
 	margin-bottom: 0.8rem;
-	cursor: default;
+	cursor: pointer;
 `;
 const MainSection = styled.div`
 	flex-grow: 1;

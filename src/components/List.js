@@ -45,6 +45,8 @@ const List = ({ id, user, isOwner }) => {
 								places={data.list.places}
 								activePlace={activePlace}
 								setActivePlace={setActivePlace}
+								position={position}
+								setPosition={setPosition}
 							/>
 						) : (
 							<Sidebar
@@ -56,6 +58,8 @@ const List = ({ id, user, isOwner }) => {
 								places={data.list.places}
 								activePlace={activePlace}
 								setActivePlace={setActivePlace}
+								position={position}
+								setPosition={setPosition}
 							/>
 						)}
 						<MapContainer>

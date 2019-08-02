@@ -12,12 +12,20 @@ const Sidebar = ({
 	createdBy,
 	activePlace,
 	setActivePlace,
+	position,
+	setPosition,
 }) => (
 	<Container>
 		{user && user.id !== createdBy && <FavoriteButton id={id} user={user} />}
 		<Title>{title}</Title>
 		<Description>{description}</Description>
-		<PlaceList places={places} activePlace={activePlace} setActivePlace={setActivePlace} />
+		<PlaceList
+			places={places}
+			activePlace={activePlace}
+			setActivePlace={setActivePlace}
+			position={position}
+			setPosition={setPosition}
+		/>
 	</Container>
 );
 const Title = styled.h3`

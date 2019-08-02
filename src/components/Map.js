@@ -44,6 +44,12 @@ const Map = ({ places, activePlace, setActivePlace, position, setPosition }) => 
 					{places.map((p) => {
 						const onMouseEnter = () => setActivePlace(p);
 						const onMouseLeave = () => setActivePlace(null);
+						const onClick = () => {
+							setPosition({
+								zoom: 15,
+								center: { lat: p.location.lat, lng: p.location.lng },
+							});
+						};
 						return (
 							<PlaceMarker
 								key={p.id}
@@ -52,6 +58,7 @@ const Map = ({ places, activePlace, setActivePlace, position, setPosition }) => 
 								onMouseLeave={onMouseLeave}
 								lat={p.location.lat}
 								lng={p.location.lng}
+								onClick={onClick}
 								place={p}>
 								<i className="fas fa-map-marker-alt" />
 							</PlaceMarker>
