@@ -5,6 +5,7 @@ import { darken, lighten } from 'polished';
 
 const Account = ({ user }) => {
 	if (!user) return <div>Please log in to view account page.</div>;
+	console.log(user);
 	return (
 		<Container>
 			<PageTitle>Account</PageTitle>
@@ -26,7 +27,17 @@ const Account = ({ user }) => {
 			</Section>
 			<Section>
 				<SectionTitle>Your Favorites</SectionTitle>
-				<EmptyText>You haven't favorited any lists yet!</EmptyText>
+				<Lists>
+					{user.favorites.length > 0 ? (
+						user.favorites.map((list) => (
+							<ListLink key={list.id} to={`/${list.id}`}>
+								{list.title}
+							</ListLink>
+						))
+					) : (
+						<EmptyText>You haven't favorited any lists yet!</EmptyText>
+					)}
+				</Lists>
 			</Section>
 
 			<a href="http://localhost:4000/auth/logout">

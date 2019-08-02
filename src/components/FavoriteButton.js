@@ -28,11 +28,28 @@ const FavoriteButton = ({ id, user }) => (
 					variables: { id: user.id, input: { favorites } },
 				});
 			};
-			return <Button onClick={handleClick}>{isFavorite ? 'unfavorite' : 'favorite'}</Button>;
+			return (
+				<Button onClick={handleClick}>
+					<Heart className="fas fa-heart" isFavorite={isFavorite} />
+				</Button>
+			);
 		}}
 	</Mutation>
 );
 
-const Button = styled.button``;
+const Button = styled.button`
+	border: none;
+	outline: none;
+	cursor: pointer;
+	&:hover {
+		i {
+			color: pink;
+		}
+	}
+`;
+const Heart = styled.i`
+	font-size: 1rem;
+	color: ${(props) => (props.isFavorite ? 'red' : '#ddd')};
+`;
 
 export default FavoriteButton;

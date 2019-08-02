@@ -14,6 +14,8 @@ const query = gql`
 			description
 			createdBy {
 				id
+				name
+				photo
 			}
 			places {
 				id
@@ -35,14 +37,15 @@ const List = ({ id, user, isOwner }) => {
 		<Query query={query} variables={{ id }}>
 			{({ loading, error, data }) => {
 				if (loading) return <div>Loading...</div>;
+				const { title, description, places, createdBy } = data.list;
 				return (
 					<Container>
 						{isOwner ? (
 							<EditSidebar
 								id={id}
-								title={data.list.title}
-								description={data.list.description}
-								places={data.list.places}
+								title={title}
+								description={description}
+								places={places}
 								activePlace={activePlace}
 								setActivePlace={setActivePlace}
 								position={position}
@@ -52,10 +55,10 @@ const List = ({ id, user, isOwner }) => {
 							<Sidebar
 								user={user}
 								id={id}
-								title={data.list.title}
-								createdBy={data.list.createdBy.id}
-								description={data.list.description}
-								places={data.list.places}
+								title={title}
+								createdBy={createdBy}
+								description={description}
+								places={places}
 								activePlace={activePlace}
 								setActivePlace={setActivePlace}
 								position={position}
