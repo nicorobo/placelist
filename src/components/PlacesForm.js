@@ -3,6 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { primaryColor, primaryText } from '../theme.js';
 
 const query = gql`
 	query PlaceSuggestions($input: String!) {
@@ -67,7 +68,7 @@ const StyledSuggestion = styled.div`
 	padding: 0.5rem 0.5rem;
 	font-size: 0.9rem;
 	cursor: pointer;
-	${(props) => (props.isHighlighted ? `background: #226089; color: white;` : '')};
+	${(props) => (props.isHighlighted ? `background: ${primaryColor}; color: white;` : '')};
 `;
 const PrimaryLine = styled.div``;
 const SecondaryLine = styled.div`
@@ -76,6 +77,7 @@ const SecondaryLine = styled.div`
 `;
 const Container = styled.div`
 	margin-bottom: 1rem;
+	color: ${primaryText};
 	.places-form {
 		width: 85%;
 		padding: 0.5rem 0.5rem;

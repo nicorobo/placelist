@@ -4,6 +4,13 @@ import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { darken, lighten } from 'polished';
+import {
+	primaryColor,
+	primaryText,
+	textOnPrimaryColor,
+	secondaryText,
+	successColor,
+} from '../theme.js';
 
 const deleteListMutation = gql`
 	mutation DeleteList($id: ID!) {
@@ -71,9 +78,7 @@ const Account = ({ user }) => {
 				</Lists>
 			</Section>
 
-			<a href="http://localhost:4000/auth/logout">
-				<button>Logout</button>
-			</a>
+			<LogoutButton href="http://localhost:4000/auth/logout">Logout</LogoutButton>
 		</Container>
 	);
 };
@@ -83,12 +88,13 @@ const Container = styled.div`
 	flex-direction: column;
 	width: 100%;
 	max-width: 800px;
+	margin-top: 1.5rem;
 	padding: 1rem 2rem;
 `;
 const PageTitle = styled.h2`
 	font-size: 2rem;
 	font-weight: bold;
-	color: #333;
+	color: ${primaryText};
 	text-align: center;
 `;
 const Section = styled.div`
@@ -101,40 +107,43 @@ const SectionTitle = styled.div`
 	display: flex;
 	align-items: center;
 	font-size: 1.2rem;
-	font-weight: lighter;
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 `;
 const CreateLink = styled(Link)`
 	font-size: 0.9rem;
 	text-decoration: none;
 	margin-left: auto;
-	color: green;
+	color: ${successColor};
 	&:hover {
-		color: ${darken(0.1, 'green')};
+		color: ${darken(0.1, successColor)};
 	}
 `;
 const ListLink = styled(Link)`
 	text-decoration: none;
-	color: #226089;
+	color: ${primaryColor};
+	opacity: 0.8;
 	&:hover {
-		color: ${lighten(0.2, '#226089')};
+		opacity: 1;
+		// color: ${lighten(0.2, primaryColor)};
 	}
 `;
 const EditButton = styled(Link)`
 	text-decoration: none;
-	color: #226089;
+	font-size: 1rem;
+	color: ${secondaryText};
 	margin-right: 0.5rem;
 	&:hover {
-		color: ${lighten(0.2, '#226089')};
+		color: ${lighten(0.2, primaryColor)};
 	}
 `;
 const DeleteButton = styled.button`
 	border: none;
+	font-size: 1rem;
 	background: none;
 	cursor: pointer;
-	color: #226089;
+	color: ${secondaryText};
 	&:hover {
-		color: ${lighten(0.2, '#226089')};
+		color: ${lighten(0.2, primaryColor)};
 	}
 `;
 const ListContainer = styled.div`
@@ -151,7 +160,23 @@ const EmptyText = styled.div`
 	text-align: center;
 	font-size: 0.9rem;
 	padding: 1rem;
-	color: #888;
+	color: ${secondaryText};
+`;
+const LogoutButton = styled.a`
+	text-decoration: none;
+	align-self: flex-end;
+	padding: 0.5rem 1rem;
+	outline: none;
+	color: ${primaryColor};
+	border-radius: 5px;
+	border: 1px solid ${primaryColor};
+	cursor: pointer;
+	font-size: 0.8rem;
+	background: ${textOnPrimaryColor};
+	&:hover {
+		background: ${primaryColor}
+		color: ${textOnPrimaryColor};
+	}
 `;
 
 export default Account;

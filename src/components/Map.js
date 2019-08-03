@@ -4,6 +4,7 @@ import GoogleMap from 'google-map-react';
 import { multiPoint } from '@turf/helpers';
 import bbox from '@turf/bbox';
 import { fitBounds } from 'google-map-react/utils';
+import { primaryColor, highlightColor } from '../theme.js';
 const defaultPosition = { center: [39.8097343, -98.5556199], zoom: 3 };
 const getBounds = (places, container) => {
 	if (places.length <= 0) return defaultPosition;
@@ -79,6 +80,9 @@ const Map = ({ places, activePlace, setActivePlace, position, setPosition }) => 
 const PlaceMarker = styled.div`
 	font-size: ${(props) => (props.isActive ? '2rem' : '1.5rem')};
 	position: absolute;
+	color: ${(props) => (props.isActive ? highlightColor : '#333')};
+	opacity: ${(props) => (props.isActive ? 1 : 0.8)};
+	z-index: ${(props) => (props.isActive ? 100 : '')};
 	top: ${(props) => (props.isActive ? '-2rem' : '-1.5rem')};
 	left: ${(props) => (props.isActive ? '-0.7rem' : '-0.5rem')};
 	transition: 0.2s ease all;

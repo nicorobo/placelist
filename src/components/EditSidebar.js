@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { lighten } from 'polished';
 import PlacesForm from './PlacesForm';
 import PlaceList from './PlaceList';
+import { primaryColor, primaryText, secondaryText } from '../theme.js';
 
 // Move mutation logic to PlacesForm component?
 const EditSidebar = ({
@@ -88,7 +90,6 @@ const TitleForm = styled.form`
 const Title = styled.h3`
 	font-size: 1.5rem;
 	flex-grow: 1;
-	color: #333;
 `;
 const TitleInput = styled.input`
 	font-size: 1rem;
@@ -144,7 +145,7 @@ const DescriptionForm = styled.form`
 const Description = styled.p`
 	font-size: 0.9rem;
 	flex-grow: 1;
-	color: #333;
+	color: ${primaryText};
 `;
 const DescriptionInput = styled.textarea`
 	font-size: 0.9rem;
@@ -158,9 +159,9 @@ const StyledButton = styled.button`
 	font-size: 0.9rem;
 	background: white;
 	cursor: pointer;
-	color: #bbb;
+	color: ${secondaryText};
 	&:hover {
-		color: #333;
+		color: ${lighten(0.2, primaryColor)};
 	}
 	align-self: flex-end;
 `;
@@ -168,6 +169,8 @@ const StyledButton = styled.button`
 const Container = styled.div`
 	padding: 0.5rem 1rem 0.5rem 1rem;
 	width: 300px;
+	margin-top: 1.5rem;
+	color: ${primaryText};
 `;
 
 const updateListMutation = gql`

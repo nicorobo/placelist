@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { lighten } from 'polished';
+import { favoriteColor, nonfavoriteColor } from '../theme.js';
 
 const updateUserMutation = gql`
 	mutation UpdateUser($id: ID!, $input: UserInput) {
@@ -43,13 +45,13 @@ const Button = styled.button`
 	cursor: pointer;
 	&:hover {
 		i {
-			color: pink;
+			color: ${lighten(0.2, favoriteColor)};
 		}
 	}
 `;
 const Heart = styled.i`
 	font-size: 1rem;
-	color: ${(props) => (props.isFavorite ? 'red' : '#ddd')};
+	color: ${(props) => (props.isFavorite ? favoriteColor : nonfavoriteColor)};
 `;
 
 export default FavoriteButton;

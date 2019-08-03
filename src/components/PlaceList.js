@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { lighten } from 'polished';
+import { primaryColor, primaryText, secondaryText, highlightColor } from '../theme.js';
 
 const PlaceList = ({ places, update, activePlace, setActivePlace, position, setPosition }) => {
 	const handleDelete = (id) => {
@@ -40,9 +42,13 @@ const PlaceItem = ({
 			center: { lat: location.lat, lng: location.lng },
 		});
 	return (
-		<Item>
-			<MainSection onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-				<ItemName isActivePlace={isActivePlace}>{name}</ItemName>
+		<Item isActivePlace={isActivePlace}>
+			<MainSection
+				isActivePlace={isActivePlace}
+				onClick={onClick}
+				onMouseEnter={onMouseEnter}
+				onMouseLeave={onMouseLeave}>
+				<ItemName>{name}</ItemName>
 				<ItemAddress>{address}</ItemAddress>
 			</MainSection>
 			{deletePlace && (
@@ -58,6 +64,9 @@ const Item = styled.div`
 	display: flex;
 	margin-bottom: 0.8rem;
 	cursor: pointer;
+	color: ${(props) => (props.isActivePlace ? highlightColor : primaryText)};
+	padding-left: 0.5rem;
+	border-left: 3px solid ${(props) => (props.isActivePlace ? highlightColor : 'white')};
 `;
 const MainSection = styled.div`
 	flex-grow: 1;
@@ -66,11 +75,9 @@ const ItemName = styled.div`
 	margin-bottom: 0.2rem;
 	font-size: 0.9rem;
 	font-weight: bold;
-	color: ${(props) => (props.isActivePlace ? '#226089' : '#333')};
 `;
 const ItemAddress = styled.div`
 	font-size: 0.8rem;
-	color: ;
 `;
 const DeleteButton = styled.button`
 	border: none;
@@ -78,9 +85,9 @@ const DeleteButton = styled.button`
 	font-size: 0.9rem;
 	background: white;
 	cursor: pointer;
-	color: #bbb;
+	color: ${secondaryText};
 	&:hover {
-		color: #f88;
+		color: ${lighten(0.2, primaryColor)};
 	}
 `;
 const Container = styled.div``;

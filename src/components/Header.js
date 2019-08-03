@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import styled from 'styled-components';
+import { primaryColor, textOnPrimaryColor } from '../theme.js';
 
 const Header = ({ user }) => (
 	<Container>
@@ -30,12 +31,13 @@ const Badge = ({ user }) => (
 const Container = styled.div`
 	display: flex;
 	align-items: center;
-	padding: 1rem 2rem 0.5rem 2rem;
+	padding: 0.5rem 2rem;
+	background: ${primaryColor};
 `;
 const Logo = styled(Link)`
 	font-size: 1.5rem;
 	text-decoration: none;
-	color: #226089;
+	color: ${textOnPrimaryColor};
 	font-weight: 600;
 	span {
 		font-weight: 300;
@@ -46,15 +48,16 @@ const Spacer = styled.div`
 `;
 const LoginButton = styled.button`
 	padding: 0.5rem 1rem;
-	color: #226089;
+	outline: none;
+	color: ${textOnPrimaryColor};
 	border-radius: 5px;
-	border: 1px solid #226089;
+	border: 1px solid ${textOnPrimaryColor};
 	cursor: pointer;
 	font-size: 0.8rem;
-	background: white;
+	background: ${primaryColor};
 	&:hover {
-		background: #226089
-		color: white;
+		background: ${textOnPrimaryColor}
+		color: ${primaryColor};
 	}
 `;
 
@@ -62,11 +65,15 @@ const AccountLink = styled(Link)`
 	display: flex;
 	align-items: center;
 	text-decoration: none;
+	opacity: 0.9;
+	&:hover {
+		opacity: 1;
+	}
 `;
 
 const Name = styled.div`
 	margin-right: 1rem;
-	color: #333;
+	color: ${textOnPrimaryColor};
 	font-size: 0.9rem;
 `;
 

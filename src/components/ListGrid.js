@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from '@reach/router';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { primaryColor, primaryText } from '../theme.js';
 
 const query = gql`
 	query getLists {
@@ -54,12 +55,17 @@ const Item = styled.div`
 	padding: 2rem;
 	border: 1px solid #e4e4e4;
 	box-shadow: 3px 3px 5px 0px #e4e4e4;
+	color: ${primaryText};
 `;
 const ItemTitle = styled(Link)`
 	text-decoration: none;
-	color: #226089;
+	color: ${primaryColor};
 	font-size: 1rem;
 	font-weight: 600;
+	opacity: 0.8;
+	&:hover {
+		opacity: 1;
+	}
 `;
 const ItemDescription = styled.p`
 	margin-top: 0.5rem;
@@ -70,7 +76,7 @@ const ItemCount = styled.p`
 	align-self: flex-end;
 	margin-top: 0.2rem;
 	font-size: 0.8rem;
-	color: #226089;
+	color: ${primaryColor};
 	opacity: 0.8;
 `;
 const ItemCreator = styled.p`
@@ -78,7 +84,7 @@ const ItemCreator = styled.p`
 	margin-top: 0.5rem;
 	font-size: 0.8rem;
 	span {
-		color: #226089;
+		color: ${primaryColor};
 	}
 `;
 

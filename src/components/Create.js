@@ -4,6 +4,7 @@ import { navigate } from '@reach/router';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import ListForm from './ListForm';
+import { primaryText } from '../theme.js';
 
 const createListMutation = gql`
 	mutation CreateList($input: ListInput) {
@@ -35,13 +36,14 @@ const Container = styled.div`
 	align-items: center;
 	width: 100%;
 	max-width: 800px;
+	margin-top: 1.5rem;
 	padding: 1rem 2rem;
 `;
 
 const PageTitle = styled.h2`
 	font-size: 2rem;
 	font-weight: bold;
-	color: #333;
+	color: ${primaryText};
 	text-align: center;
 `;
 

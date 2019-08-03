@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { primaryColor, textOnPrimaryColor } from '../theme';
 
 const ListForm = ({ createList }) => {
 	const [title, changeTitle] = useState('');
@@ -46,8 +47,20 @@ const DescriptionInput = styled.input`
 	margin-bottom: 1rem;
 	height: 1rem;
 `;
+
 const SubmitButton = styled.button`
+	padding: 0.5rem 1rem;
+	color: ${primaryColor};
+	border-radius: 5px;
+	border: 1px solid ${primaryColor};
 	cursor: pointer;
+	outline: none;
+	font-size: 0.8rem;
+	background: ${textOnPrimaryColor};
+	&:hover {
+		background: ${primaryColor}
+		color: ${textOnPrimaryColor};
+	}
 `;
 
 export default ListForm;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PlaceList from './PlaceList';
 import FavoriteButton from './FavoriteButton';
+import { primaryColor, primaryText } from '../theme.js';
 
 const Sidebar = ({
 	id,
@@ -53,31 +54,30 @@ const Avatar = styled.div`
 const Title = styled.h3`
 	font-size: 1.5rem;
 	flex-grow: 1;
-	color: #333;
 	margin-bottom: 0.8rem;
 `;
 const Description = styled.p`
 	font-size: 0.9rem;
 	flex-grow: 1;
-	color: #333;
 	margin-bottom: 0.8rem;
 `;
 const CreatedBy = styled.div`
 	display: flex;
 	align-items: center;
 	font-size: 0.8rem;
-	color: #333;
 	margin-bottom: 1.5rem;
 `;
 const Name = styled.div`
 	flex-grow: 1;
 	span {
-		color: #226089;
+		color: ${primaryColor};
 	}
 `;
 const Container = styled.div`
+	margin-top: 1.5rem;
 	padding: 0.5rem 1rem 0.5rem 2rem;
 	width: 300px;
+	color: ${primaryText};
 `;
 
 export default Sidebar;
