@@ -10,6 +10,7 @@
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",
     "google-map-react": "^1.1.4",
+    "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
     "polished": "^3.4.1",
     "react": "^16.8.4",

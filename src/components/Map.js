@@ -4,7 +4,7 @@ import GoogleMap from 'google-map-react';
 import { multiPoint } from '@turf/helpers';
 import bbox from '@turf/bbox';
 import { fitBounds } from 'google-map-react/utils';
-import { primaryColor, highlightColor } from '../theme.js';
+import { highlightColor } from '../theme.js';
 const defaultPosition = { center: [39.8097343, -98.5556199], zoom: 3 };
 const getBounds = (places, container) => {
 	if (places.length <= 0) return defaultPosition;
