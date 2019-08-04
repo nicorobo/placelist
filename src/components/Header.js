@@ -14,7 +14,7 @@ const Header = ({ user }) => (
 );
 
 const Login = () => (
-	<a href="http://localhost:4000/auth/facebook">
+	<a href="https://placelist-server.herokuapp.com/auth/facebook">
 		<LoginButton>Login</LoginButton>
 	</a>
 );

@@ -11,7 +11,7 @@ import App from './App';
 
 const client = new ApolloClient({
 	link: new HttpLink({
-		uri: 'http://localhost:4000/graphql',
+		uri: 'https://placelist-server.herokuapp.com/graphql',
 		credentials: 'include',
 	}),
 	cache: new InMemoryCache(),
