@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import styled from 'styled-components';
-import { SERVER } from './vars.js';
+import { SERVER } from '../vars.js';
 import { primaryColor, textOnPrimaryColor } from '../theme.js';
 
 const Header = ({ user }) => (
