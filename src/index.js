@@ -5,13 +5,14 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider, Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { SERVER } from './vars.js';
 import './index.css';
 import 'reset-css';
 import App from './App';
 
 const client = new ApolloClient({
 	link: new HttpLink({
-		uri: 'https://placelist-server.herokuapp.com/graphql',
+		uri: SERVER + '/graphql',
 		credentials: 'include',
 	}),
 	cache: new InMemoryCache(),

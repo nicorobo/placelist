@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import styled from 'styled-components';
+import { SERVER } from './vars.js';
 import { primaryColor, textOnPrimaryColor } from '../theme.js';
 
 const Header = ({ user }) => (
@@ -14,7 +15,7 @@ const Header = ({ user }) => (
 );
 
 const Login = () => (
-	<a href="https://placelist-server.herokuapp.com/auth/facebook">
+	<a href={SERVER + '/auth/facebook'}>
 		<LoginButton>Login</LoginButton>
 	</a>
 );
