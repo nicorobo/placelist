@@ -1,1 +1,1 @@
-export const SERVER = 'https://placelist-server.herokuapp.com';
+export const SERVER = 'http://localhost:4000';
