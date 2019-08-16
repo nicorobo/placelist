@@ -38,14 +38,18 @@ const ListGrid = ({ near }) => (
 );
 
 const ListItem = ({ list }) => {
+	const { id, title, description, places, createdBy } = list;
 	return (
 		<Item>
-			<ItemTitle to={`/${list.id}`}>{list.title}</ItemTitle>
-			<ItemDescription>{list.description}</ItemDescription>
+			<ItemTitle to={`/${id}`}>{title}</ItemTitle>
+			<ItemDescription>
+				{description.substring(0, 150)}
+				{description.length > 150 ? '...' : ''}
+			</ItemDescription>
 			<ItemCreator>
-				Created by <span>{list.createdBy.name}</span>
+				Created by <span>{createdBy.name}</span>
 			</ItemCreator>
-			<ItemCount>{list.places.length} Places</ItemCount>
+			<ItemCount>{places.length} Places</ItemCount>
 		</Item>
 	);
 };
